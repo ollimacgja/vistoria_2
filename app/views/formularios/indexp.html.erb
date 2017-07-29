@@ -1,0 +1,60 @@
+<div class="padd">
+
+  <p id="notice"><%= notice %></p>
+
+  <h1>Formularios Enviados</h1>
+  
+  <%= form_tag("", :method => "get", id: "busca") do %>
+  <%= text_field_tag :busca, params[:busca], placeholder: "Parcial da placa ou frota" %>
+  <%= submit_tag "Busca" %>
+  <% end %>
+  
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Identificador</th>
+      <th>Tipo</th>
+      <th>Filial</th>
+      <th>Coluna 1</th>
+      <th>Usuário</th>
+      <th>Recebido</th>
+      <th></th>
+      <th>PDF</th>
+    </tr>
+    </thead>
+<% unless @form.blank? %>
+    <tbody> 
+      <% @form.each do |formulario| %>
+        <tr>
+          <td><%= formulario.id %></td>
+          <td><%= formulario.formulario.nome %></td>
+          <td><%= formulario.user.filial.nome %></td>
+          <td>
+            <% formulario.answers.first(2).each do |t| %>
+            <div> <%= t.formulario_field.label %>: <%= t.valor %></div>
+            <% end %>
+          </td>
+          <td><%= formulario.user.nome %></td>
+          <td><%= formulario.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+          <td><%= link_to 'Ver Formulário', answers_path(formulario.id), class: 'btn btn-primary' %></td>
+          <td><%= link_to "PDF", answers_path(formulario.id) + ".pdf", class: 'btn btn-primary', :target => "_blank" %></td>
+        
+        </tr>
+      <% end %>
+    </tbody>
+    <% end %>
+  </table>
+  <% unless @form.blank? %>
+<%= will_paginate @form %>
+<% end %>
+  <br>
+
+
+
+</div>
+
+<div class="widget-foot">
+
+  <%= button_to 'Voltar', formulario_preenchido_indexp_path, method: :get ,class: "btn btn-success" %>
+</div>
+

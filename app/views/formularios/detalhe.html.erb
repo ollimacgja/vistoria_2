@@ -1,0 +1,48 @@
+<div class="padd">
+
+  <h2>Campos do Formulario <%= @formulario.nome %></h2>
+<hr>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th width="20%">Label</th>
+      <th width="20%">Formulario</th>
+      <th width="20%">Tipo</th>
+      <th width="20%">Requirido</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody >
+    <% if @campos.blank?%>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    <%else%>
+        <% @campos.each do |formulario_field| %>
+            <tr>
+              <td><%= formulario_field.label %></td>
+              <td><%= formulario_field.formulario.nome %></td>
+              <td><%= formulario_field.field_type.nome %></td>
+              <%if formulario_field.requirido == 1%>
+                  <td><%= "Requerido" %></td>
+              <%else%>
+                  <td><%= "Não Requerido" %></td>
+              <%end%>
+              <td><%= button_to 'Editar', edit_formulario_field_path(formulario_field),method: :get ,class: "btn btn-warning" %></td>
+              <td><%= button_to 'Deletar', formulario_field, method: :delete, data: { confirm: 'você tem certeza?' }, class: "btn btn-danger"  %></td>
+            </tr>
+        <% end %>
+    <%end%>
+    </tbody>
+  </table>
+  <% link = "/formulario_fields/"+@formulario.id.to_s+"/new" %>
+
+</div>
+
+<div class="widget-foot">
+  <%= button_to 'Adicionar campo ao formulario', url_for(link),method: :get ,class: "btn btn-primary" %>
+</div>

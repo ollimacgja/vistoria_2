@@ -1,0 +1,17 @@
+<div class="padd">
+
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Nome:</strong>
+    <%= @filial.nome %>
+  </p>
+
+
+  <%= button_to 'Editar', edit_filial_path(@filial), method: :get,class: "btn btn-danger" %>
+
+</div>
+
+<div class="widget-foot">
+  <%= button_to 'Voltar', filials_path, method: :get,class: "btn btn-warning" %>
+</div>

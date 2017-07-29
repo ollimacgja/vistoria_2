@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: MyString
+  formulario_id: 1
+  field_type_id: 1
+  requirido: 1
+
+two:
+  label: MyString
+  formulario_id: 1
+  field_type_id: 1
+  requirido: 1

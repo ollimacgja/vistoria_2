@@ -1,0 +1,91 @@
+<%= simple_nested_form_for(@formulario) do |f| %>
+  <% if @formulario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@formulario.errors.count, "error") %> prohibited this formulario from being saved:</h2>
+
+      <ul>
+      <% @formulario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :nome, class: "form-control" %>
+    <strong>Filiais:</strong>
+    <%= f.association :filials, as: :check_boxes, label_method: :nome, value_method: :id, label: false, item_wrapper_class: "checkbox-inline" %>
+  </div>
+
+  <div class="field">
+    <strong>Grupo de Contatos:</strong>
+    <%= f.association :contact_groups, as: :check_boxes, label_method: :nome, value_method: :id, label: false, item_wrapper_class: "checkbox-inline" %>
+  </div>
+
+  <hr>
+  <%= f.fields_for :formulario_fields do |task_form| %>
+    <div class='form-group'>
+      <%= task_form.input :label, label: 'Nome do campo', class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <%= task_form.association :field_type, label_method: :nome, value_method: :id, include_blank: false, class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+      <% if task_form.object.new_record? || task_form.object.options.present? %>
+        <%= task_form.input :options, label: 'Opções(separadas por virgulas)', class: 'form-control options_field'%>
+      <% else %>
+        <%= task_form.input :options, as: :hidden, label: 'Opções(separadas por virgulas)', class: 'form-control options_field'%>
+      <% end %>
+    </div>
+
+    <div class='form-group'>
+      <% if task_form.object.new_record? || task_form.object.url.present? %>
+        <%= task_form.input :url, label: 'URL', class: 'form-control url_field'%>
+      <% else %>
+        <%= task_form.input :url, as: :hidden, label: 'URL', class: 'form-control url_field'%>
+      <% end %>
+    </div>
+
+    <div class='form-group'>
+      <%= task_form.input :requirido, as: :boolean, label: 'Requerido', checked_value: 1, unchecked_value: 0, class: 'form-control' %>
+    </div>
+    <%= task_form.link_to_remove "Remover este campo", class: 'btn btn-danger' %>
+    <br><hr><br>
+  <% end %>
+  <p><%= f.link_to_add "Adicionar Campos", :formulario_fields, class: 'btn btn-primary' %></p>
+
+    <br><br><hr>
+  <div class="actions">
+    <%= f.submit txt , class: "btn btn-success" %>
+  </div>
+
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    $(document).on('nested:fieldAdded', function(event){
+      // this field was just inserted into your form
+      var field = event.field;
+      var optionsField = field.find('.formulario_formulario_fields_options');
+      var urlField = field.find('.formulario_formulario_fields_url');
+      $(optionsField).hide();
+      $(urlField).hide();
+
+      // it's a jQuery object already! Now you can find date input
+      var selectField = field.find('select')
+      $(selectField).change(function(){
+        if($(this).val() == 10 || $(this).val() == 11){ // or this.value == 'volvo'
+          $(optionsField).show();
+        } else if ( $(this).val() == 14) {
+          $(urlField).show();
+        } else {
+          $(optionsField).hide();
+        }
+      });
+    })
+  });
+</script>
+

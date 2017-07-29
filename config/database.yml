@@ -1,0 +1,29 @@
+development: 
+  adapter: mysql2
+  encoding: utf8 
+  database: vistoria
+  username: gestosat
+  password: gestosat123
+  host: sicopb.cqqzk70wbxo4.us-west-2.rds.amazonaws.com
+  #host: 127.0.0.1
+  socket: /tmp/mysql.sock
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: vistoria_test
+  username: gestosat
+  password: gestosat123
+  host: sicopb.cqqzk70wbxo4.us-west-2.rds.amazonaws.com
+  #host: 127.0.0.1  
+  socket: /tmp/mysql.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: vistoria
+  username: gestosat
+  password: gestosat123
+  host: sicopb.cqqzk70wbxo4.us-west-2.rds.amazonaws.com
+  #host: 127.0.0.1  
+  socket: /tmp/mysql.sock

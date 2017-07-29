@@ -1,0 +1,45 @@
+
+<div class="padd">
+
+
+
+  <p id="notice"><%= notice %></p>
+
+  <h2>Formularios Criados</h2>
+  <hr>
+  <div class="clearfix"></div>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th width="70%">Nome</th>
+      <th colspan="4"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @formularios.each do |formulario| %>
+        <tr>
+          <td><%= formulario.nome %></td>
+          <td><%= button_to 'Mostrar', formulario , method: :get ,class: "btn btn-primary"%></td>
+          <td><%= button_to 'Editar Formulário', edit_formulario_path(formulario)  , method: :get ,class: "btn btn-primary"%></td>
+          <td><%= button_to 'Deletar', formulario, method: :delete, data: { confirm: 'TODOS OS ENVIOS DESTE FORMULARIO SERAO APAGADOS, ESTA CERTO DISSO?' },class: "btn btn-danger" %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <div class="clearfix"></div>
+
+
+
+
+</div>
+
+<div class="widget-foot">
+
+  <%= button_to 'Novo Formulario', new_formulario_path, method: :get ,class: "btn btn-success" %>
+
+</div>
+
+
+

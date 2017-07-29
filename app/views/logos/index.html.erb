@@ -1,0 +1,20 @@
+<div class="padd">
+  <h1>Editar Logo</h1>
+
+  <% if @logo.image.present? %>
+    <div class="well">
+      <%= link_to @logo.image.url do %>
+        <%= image_tag(@logo.image.thumb.url) %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= simple_form_for @logo do |f| %>
+    <%= f.input :image, label: 'Imagem' %>
+    <%= f.button :submit, 'Editar Logo', class: 'btn btn-success' %>
+  <% end %>
+</div>
+
+<div class="widget-foot">
+  <%= button_to 'Voltar', root_path ,method: :get ,class:"btn btn-warning"%>
+</div>

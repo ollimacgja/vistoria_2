@@ -1,0 +1,38 @@
+<div class="padd">
+  
+<p id="notice"><%= notice %></p>
+
+<h2>Lista de Grupros</h2>
+<small>Cadastro de grupos para recebimento de alertas</small>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Destinos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contact_groups.each do |grupo| %>
+      <tr>
+        <td><%= grupo.nome %></td>
+        <td><%= grupo.destinos.count %></td>
+        <td><%= link_to 'Show', grupo, class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_contact_group_path(grupo), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', grupo, class: 'btn btn-danger', method: :delete, data: { confirm: 'Tem Certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>
+
+<div class="widget-foot">
+
+  <%= button_to 'Novo Grupo', new_contact_group_path, method: :get,class: "btn btn-success" %>
+
+</div>

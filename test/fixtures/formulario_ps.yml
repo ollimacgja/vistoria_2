@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  form_id: MyString
+  formulario_id: 
+  formulario_field_id: 
+  usuarios_id: 
+  valor: MyString
+
+two:
+  form_id: MyString
+  formulario_id: 
+  formulario_field_id: 
+  usuarios_id: 
+  valor: MyString

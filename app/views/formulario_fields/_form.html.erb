@@ -1,0 +1,65 @@
+<%= form_for(@formulario_field) do |f| %>
+  <% if @formulario_field.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@formulario_field.errors.count, "error") %> prohibited this formulario_field from being saved:</h2>
+
+      <ul>
+      <% @formulario_field.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <% if @form == nil %>
+
+    <div class="field">
+      <%= f.label :formulario_id %><br>
+      <%= f.collection_select :formulario_id,@formulario, :id,:nome , class: "selectpickerl"%>
+    </div>
+    <%else%>
+
+        <div class="field">
+          <input type="hidden" id="formulario_field[formulario_id]" name="formulario_field[formulario_id]" value="<%=@form.id %>">
+        </div>
+
+
+     <% end %>
+    <hr>
+
+
+      <div class="form-group">
+    <%= f.label "Nome do Campo" %><br>
+    <%= f.text_field :label , class: "form-control"%>
+  </div>
+
+
+      <div class="form-group">
+    <%= f.label "Tipo do Campo" %><br>
+    <%= f.collection_select :field_type_id ,@fields, :id,:nome, class: "selectpicker" %>
+  </div>
+      <div class="form-group">
+    <%= f.label :requirido %><br>
+    <select name='formulario_field[requirido]'>
+      <option value='1'>Sim
+      </option><option value='0'>Não</option>
+    </select>
+  </div>
+
+
+
+    <hr>
+    <div id="add"></div>
+<br><br>
+
+  <div class="actions">
+    <%= f.submit "Criar Campos", class:"btn btn-success" %>
+  </div>
+<% end %>
+
+<% if txt == "Criar Campos" %>
+
+    <button id="repeat" class="btn btn-primary">Adicionar mais campos</button>
+
+
+<% end %>

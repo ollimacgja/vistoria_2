@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vistoria</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body style="background-color: #CCCCCC">
+
+
+<div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
+
+  <div class="conjtainer">
+    <!-- Menu button for smallar screens -->
+
+
+
+    <!-- Navigation starts -->
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+
+
+
+      <!-- Links -->
+      <ul class="nav navbar-nav pull-right">
+        <li class="dropdown pull-right">
+          <% if user_signed_in?%>
+              <p class="navbar-text pull-right">
+                Logado como <strong><%= current_user.email %></strong>.
+                <%= link_to 'Editar Perfil', edit_user_registration_path, :class => 'navbar-link' %> |
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% else %>
+              <p class="navbar-text pull-right">
+                <%= link_to "Login", new_user_session_path,method: :get ,:class => 'btn btn-primary'  %>
+          <% end %>
+
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+            <li><a href="#"><i class="fa fa-cogs"></i> Settings</a></li>
+            <li><a href="login.html"><i class="fa fa-sign-out"></i> Logout</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+
+  </div>
+</div>
+
+
+<!-- Header starts -->
+<header>
+  <div class="container">
+    <div class="row">
+
+      <!-- Logo section -->
+      <div class="col-md-4">
+        <!-- Logo. -->
+        <div class="logo">
+          <h1><span class="bold">Vistoria</span></h1>
+        </div>
+        <!-- Logo ends -->
+      </div>
+
+
+
+
+    </div>
+  </div>
+</header>
+
+<!-- Header ends -->
+
+<!-- Main content starts -->
+
+<div class="content">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <!--- Sidebar navigation -->
+    <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
+    <ul id="nav">
+
+
+      <% if user_signed_in?%>
+        <% if current_user.master? %>
+            <li class="amenu"><a href="/formularios"><i class="fa fa-file-o"></i>Formulario</a></li>
+            <li class="amenu"><a href="/filials"><i class="fa fa-forumbee"></i>Filiais</a></li>
+            <li class="amenu"><a href="/contact_groups"><i class="fa fa-folder"></i>Grupos</a></li>
+            <li class="amenu"><a href="/destinos"><i class="fa fa-address-book-o"></i>Destinos</a></li>
+            <li class="amenu"><a href="/usuarios"><i class="fa fa-users"></i>Usuarios</a></li>
+            <li class="amenu"><a href="/formulario_preenchido/indexp"><i class="fa fa-mail-forward"></i>Enviados</a></li>
+            <li>
+              <%= link_to logos_path, class: 'amenu' do %>
+                <i class="fa fa-copyright"></i>Logo
+              <% end %>
+            </li>
+            <% else %>
+            <li class="amenu"><a href="/formulario_preenchido/indexp"><i class="fa fa-mail-forward"></i>Enviados</a></li>
+        <%end%>
+      <% end %>
+
+    </ul>
+  </div>
+
+  <!-- Sidebar ends -->
+
+  <!-- Main bar -->
+  <div class="mainbar">
+
+    <!-- Page heading -->
+    <div class="page-head">
+      <h2 class="pull-left"><span id="titulo"></span></h2>
+
+
+
+      <div class="clearfix"></div>
+
+    </div>
+    <!-- Page heading ends -->
+
+
+    <!-- Matter -->
+
+    <div class="matter">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="widget">
+
+              <div class="widget-head">
+                <div class="pull-left"></div>
+                <div class="widget-icons pull-right">
+                </div>
+
+                <div class="clearfix"></div>
+
+
+              </div>
+              <div class="widget-content">
+
+
+                <%= yield %>
+
+
+
+
+                <!--<div class="padd">-->
+
+                <!--</div>-->
+
+                <!--<div class="widget-foot">-->
+
+                <!--</div>-->
+
+              </div>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Matter ends -->
+
+  </div>
+
+
+  <div class="clearfix">
+
+
+
+  </div>
+</div>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Copyright info -->
+        <p class="copy">Copyright &copy; 2017 | <a href="#">Gestosat</a> </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

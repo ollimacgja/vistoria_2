@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @destino.nome %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @destino.email %>
+</p>
+
+<p>
+  <strong>Celular:</strong>
+  <%= @destino.celular %>
+</p>
+
+<%= link_to 'Edit', edit_destino_path(@destino) %> |
+<%= link_to 'Back', destinos_path %>

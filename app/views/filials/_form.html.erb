@@ -1,0 +1,21 @@
+<%= form_for(@filial) do |f| %>
+  <% if @filial.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@filial.errors.count, "error") %> prohibited this filial from being saved:</h2>
+
+      <ul>
+      <% @filial.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit txt, class: "btn btn-success"%>
+  </div>
+<% end %>

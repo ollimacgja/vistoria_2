@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "pdf" %>
+    <%= stylesheet_link_tag 'application' %>
+  </head>
+<body>
+    </br>
+    <div class="container">
+ 
+    <% @texts.each do |answer| %>
+        <% unless answer.valor.blank? %>
+        <small>
+            <strong><%= answer.formulario_field.label %>:</strong> <%= answer.valor if answer.valor %>,
+        </small>
+       <% end %>
+   <% end %>
+ 
+    <hr/>
+<ul class="img-list">
+   <% @files.each do |answer| %>
+       <li>
+           <% if answer.formulario_field.foto_field? %>
+                       <a href=<%= answer.file.url %>> 
+                       <img src=<%= answer.file.url %> width="213" height="160" />
+                       <span class="text-content"><%= answer.formulario_field.label.upcase %></span>
+                    </a>
+               <% else if answer.formulario_field.assinatura_field? %>
+                      <a href=<%= answer.file.url %>> 
+                       <img src=<%= answer.file.url %> width="213" height="160" />
+                       <span class="text-content"><%= answer.formulario_field.label.upcase %></span>
+                    </a>
+                    <% else if answer.formulario_field.video_field? %>
+                      <% if answer.file? %>
+                      <a href=<%= answer.file.url %>> 
+                       <img src="http://vistoria.us-west-2.elasticbeanstalk.com/video.png" width="213" height="160" />
+                       <span class="text-content"><%= answer.formulario_field.label.upcase %></span>
+                    </a>
+                      <% end %>
+               <% end %>
+               <% end %>
+           <% end %>
+           <% end %>
+       </li>
+</ul>
+   
+<style type="text/css">
+  
+ ul.img-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+ul.img-list li {
+  display: inline-block;
+  width: 213px;
+  height: 160px;
+  margin: 0;
+  position: relative;
+}
+
+span.text-content {
+  background:rgba(83,83,83,0.7);
+  text-decoration: underline;
+  font-size: 70%;
+  color: yellow;
+  cursor: pointer;
+  display: table;
+  height: auto;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  width: auto;
+}
+ 
+span.text-content span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+</style>
+
+</div>
+</body>

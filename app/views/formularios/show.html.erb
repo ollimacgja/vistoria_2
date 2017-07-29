@@ -1,0 +1,71 @@
+<div class="padd">
+
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>Nome:</strong>
+    <%= @formulario.nome %>
+    <br>
+    <strong>Filiais:</strong>
+    <%= @formulario.filials.pluck(:nome).join(', ') %>
+    <br>
+    <strong>Grupos de Contato:</strong>
+    <%= @formulario.contact_groups.pluck(:nome).join(', ') %>
+    <!-- Adiconar tabela de campos -->
+  </p>
+  <%= button_to 'Editar Formulário', edit_formulario_path(@formulario), method: :get,class: "btn btn-danger" %>
+  <hr>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th width="20%">Label</th>
+      <th width="20%">Formulario</th>
+      <th width="20%">Tipo</th>
+      <th width="20%">Requirido</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody >
+    <% if @fields.blank?%>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    <%else%>
+        <% @fields.each do |formulario_field| %>
+            <tr>
+              <td><%= formulario_field.label %></td>
+              <td><%= formulario_field.formulario.nome %></td>
+              <td><%= formulario_field.field_type.nome %></td>
+              <%if formulario_field.requirido == 1%>
+                  <td><%= "Requerido" %></td>
+              <%else%>
+                  <td><%= "Não Requerido" %></td>
+              <%end%>
+              <td><%= button_to 'Deletar', formulario_field, method: :delete, data: { confirm: 'você tem certeza?' }, class: "btn btn-danger"  %></td>
+            </tr>
+        <% end %>
+    <%end%>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+<br>
+
+
+</div>
+
+<div class="widget-foot">
+
+
+
+  <%= button_to 'Voltar', formularios_path, method: :get,class: "btn btn-warning" %>
+
+</div>

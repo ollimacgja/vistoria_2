@@ -1,0 +1,132 @@
+
+<div class="padd">
+
+  <p id="notice"><%= notice %></p>
+
+  <h2><%= @formP.formulario.nome %></h2> <%= link_to 'Download PDF', "#{@formP.id.to_s(36)}.pdf" %>
+  <small>Id: <%= @formP.id %> Enviado por: <%= @user.nome %> filial: <b><%= @filial.nome %></b> em: <%= @answers.last.created_at.strftime("%d/%m/%y %H:%M:%S") %> Rastreio: <%= @formP.id.to_s(36) %> </small>
+
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Nome do Campo</th>
+      <!--<th>Tipo do Campo</th>-->
+      <th>Valor</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @texts.each do |answer| %>
+        <tr>
+          <td><%= answer.formulario_field.label %></td>
+          <td>
+            <% if answer.formulario_field.arquivo_field? %>
+              <%= link_to 'Ver Arquivo', answer.file.url, class: 'btn btn-primary' %>
+              <% else if answer.formulario_field.foto_field? %>
+                  <% if answer.file? %>
+                    <a href=<%= answer.file.url %>><img src=<%= answer.file.url %> width="224" height="168" /></a>
+                  <% end %> 
+              <% else if answer.formulario_field.audio_field? %>
+                  <% if answer.file? %>
+                    <%= audio_tag(answer.file.url, controls: true, autobuffer: true) %>
+                  <% end %>
+              <% else if answer.formulario_field.video_field? %>
+                  <% if answer.file? %>
+                    <%= video_tag(answer.file.url, controls: true, autobuffer: true) %>
+                  <% end %>
+              <% else if answer.formulario_field.coordenada_field? %>
+                    <%= link_to Geocoder.address(answer.valor), "https://www.google.com/maps/dir/#{ answer.valor }", :target => :_blank %>
+                  <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <%= answer.valor.upcase if answer.valor %>
+            <% end %>
+        
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  
+     <div class="container">
+
+    <hr/>
+<ul class="img-list">
+   <% @files.each do |answer| %>
+       <li>
+           <% if answer.formulario_field.foto_field? %>
+                       <a href=<%= answer.file.url %>> 
+                       <img src=<%= answer.file.url %> width="213" height="160" />
+                       <span class="text-content"><%= answer.formulario_field.label.upcase %></span>
+                    </a>
+               <% else if answer.formulario_field.assinatura_field? %>
+                      <a href=<%= answer.file.url %>> 
+                       <img src=<%= answer.file.url %> width="213" height="160" />
+                       <span class="text-content"><%= answer.formulario_field.label.upcase %></span>
+                    </a>
+                    <% else if answer.formulario_field.video_field? %>
+                      <% if answer.file? %>
+                      <a href=<%= answer.file.url %>> 
+                       <img src="http://vistoria.us-west-2.elasticbeanstalk.com/video.png" width="213" height="160" />
+                       <span class="text-content"><%= answer.formulario_field.label.upcase %></span>
+                    </a>
+                      <% end %>
+               <% end %>
+               <% end %>
+           <% end %>
+           <% end %>
+       </li>
+</ul>
+   
+<style type="text/css">
+  
+ ul.img-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+ul.img-list li {
+  display: inline-block;
+  width: 213px;
+  height: 160px;
+  margin: 0;
+  position: relative;
+}
+
+span.text-content {
+  background:rgba(83,83,83,0.7);
+  text-decoration: underline;
+  font-size: 70%;
+  color: yellow;
+  cursor: pointer;
+  display: table;
+  height: auto;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  width: auto;
+}
+ 
+span.text-content span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+</style>
+
+</div>
+
+
+
+
+
+<div class="widget-foot">
+
+  <%= button_to 'Voltar', formulario_preenchido_indexp_path, method: :get ,class: "btn btn-success" %>
+</div>
+

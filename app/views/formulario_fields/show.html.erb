@@ -1,0 +1,32 @@
+<div class="padd">
+
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Label:</strong>
+    <%= @formulario_field.label %>
+  </p>
+
+  <p>
+    <strong>Formulario:</strong>
+    <%= @formulario_field.formulario_id %>
+  </p>
+
+  <p>
+    <strong>Tipo:</strong>
+    <%= @formulario_field.field_type_id %>
+  </p>
+
+  <p>
+    <strong>Requirido:</strong>
+    <%= @formulario_field.requirido %>
+  </p>
+
+<br>
+
+  <%= button_to 'Editar', edit_formulario_field_path(@formulario_field), method: :get,class: "btn btn-success" %>
+</div>
+
+<div class="widget-foot">
+  <%= button_to 'Voltar', formulario_fields_path, method: :get,class: "btn btn-warning" %>
+</div>

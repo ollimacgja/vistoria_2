@@ -1,0 +1,16 @@
+<div class="padd">
+
+  <% if @form == nil %>
+      <h2>Adicionar Campos</h2>
+  <% else %>
+      <h2>Adicionar Campos <%=@form.nome  %></h2>
+  <% end %>
+  <hr>
+  <%= render partial: 'form' , locals: {txt: "Criar Campos"} %>
+
+
+</div>
+
+<div class="widget-foot">
+  <%= button_to 'Voltar', formulario_fields_path, method: :get, class: "btn btn-warning" %>
+</div>

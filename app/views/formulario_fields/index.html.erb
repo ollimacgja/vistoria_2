@@ -1,0 +1,40 @@
+<div class="padd">
+
+  <p id="notice"><%= notice %></p>
+
+  <h2>Lista de Campos de todos os formularios</h2>
+<hr>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th width="20%">Label</th>
+      <th width="20%">Formulario</th>
+      <th width="20%">Tipo</th>
+      <th width="20%">Requirido</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody >
+    <% @formulario_fields.each do |formulario_field| %>
+        <tr>
+          <td><%= formulario_field.label %></td>
+          <td><%= formulario_field.formulario.try(:nome) %></td>
+          <td><%= formulario_field.field_type.nome %></td>
+          <td><%= formulario_field.requirido %></td>
+          <td><%= button_to 'Editar', edit_formulario_field_path(formulario_field),class: "btn btn-warning" %></td>
+          <td><%= link_to 'Deletar', formulario_field, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger" %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+
+
+</div>
+
+<div class="widget-foot">
+  <%= button_to 'Adicionar Campo a formulario', new_formulario_field_path, method: :get, class: "btn btn-success" %>
+</div>

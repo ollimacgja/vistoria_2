@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset='utf-8' />
+<small>Arquivo e fotos originais em: http://vistoria.gestosat.com/check/<%= @formP.id.to_s(36) %></small>
+<hr />
+<% if @formP.formulario.nome.include? "Entrada" %>
+<p><em> <b>A JF DE OLIVEIRA NAVEGAÇÃO LTDA NÂO</b> se responsabiliza pelos seguintes itens: STEP COMPLETO, CALOTAS, RODOAR, PINO DO PARA CHOQUE, BOMBA DE OLEO, ESCADA DO TERMOKING, BICOS DE ENG R&Aacute;PIDO, M&Atilde;O DE AMIGO, CABOS DE A&Ccedil;O, CINTA, LONA, CAIXA DE ESTACIONAMENTO, BATERIAS, SUSPENS&Atilde;O PNEUMATICA, FEIXE DE MOLA, ESCADA PORTA LATERAL, CABO DE AUTOTRAC,CAIXA DE AUTOTRAC,BORBOLETAS TRASEIRAS E DIANTEIRAS, MANICAS, COMBUSTIVEL NOS CANQUES, CARRETAS E ACESSORIOS FECHADOS COM QUALQUER OUTRO MEIO QUE NAO SEJA <strong>LACRE DE PINO</strong> E DEMAIS ITENS QUE NAO ESTEJAM RELACIONADOS NESSA FICHA DE INSPE&Ccedil;&Atilde;O.</em></p>
+<% end %>
+<% if @formP.formulario.nome.include? "Relatório" %>
+<p><em> <b>DOCUMENTO DISPENSA ASSINATURA DO EMITENTE </b> </em> Uma vez que para emitir o documento através do sistema Vistocorp, o emitente precisa se autenticar com seu usuario e senha UNICOS A PARTICULAR, o documento fica isento de assinatura por parte do vistoriador emitente;</p>
+<% end %>
+<style>
+    p { 
+    font-size: 50%;
+}
+</style>

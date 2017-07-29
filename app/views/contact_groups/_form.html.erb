@@ -1,0 +1,20 @@
+<%= simple_form_for(@contact_group) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :nome %>
+  </div>
+
+  <div class="form-inputs">
+  <% for destino in Destino.all %>
+      <div>
+          <%= check_box_tag "contact_group[destino_ids][]", destino.id, @contact_group.destinos.include?(destino) %>
+          <%= destino.nome %>
+      </div>
+  <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

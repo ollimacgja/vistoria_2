@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  formulario_field_id: 
+  valor: MyString
+  file: MyString
+  formulario_p_id: 
+
+two:
+  formulario_field_id: 
+  valor: MyString
+  file: MyString
+  formulario_p_id: 
